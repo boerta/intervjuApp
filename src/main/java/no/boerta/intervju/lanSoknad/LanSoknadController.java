@@ -1,7 +1,6 @@
 package no.boerta.intervju.lanSoknad;
 
 import no.boerta.intervju.lanSoknad.model.LanSoknad;
-import no.boerta.intervju.lanSoknad.model.SoknadsRespons;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,8 +34,8 @@ public class LanSoknadController {
 			value="/lan/status",
 			method = RequestMethod.GET
 	)
-	public String status(String fnr) {
-		return service.status(fnr);
+	public String status(int soknadsnummer) {
+		return service.status(soknadsnummer);
 	}
 
 }

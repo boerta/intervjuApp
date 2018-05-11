@@ -1,29 +1,29 @@
 package no.boerta.intervju.lanSoknad;
 
-import no.boerta.intervju.lanSoknad.model.Fnr;
 import no.boerta.intervju.lanSoknad.model.LanSoknad;
-import no.boerta.intervju.lanSoknad.model.SoknadsRespons;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 
 @Service
 public class LanSoknadService {
-    private HashMap<Fnr, LanSoknad> mottatteSoknader = new HashMap<>();
+    LanSoknadRepository repo;
 
-
-    public SoknadsRespons sendInn(LanSoknad soknad) {
-        Fnr hovedsoker = soknad.getLanetakere().get(0).getFnr();
-        mottatteSoknader.put(hovedsoker, soknad);
-        System.out.println("Mottatt søknad: " + hovedsoker);
-        return new SoknadsRespons(hovedsoker);
+    @Autowired
+    public LanSoknadService(LanSoknadRepository repo) {
+        this.repo = repo;
     }
 
-    public String status(String fnr) {
-        Fnr hovedsoker = new Fnr(fnr);
-        if (mottatteSoknader.containsKey(hovedsoker)) {
-            return "Mottatt";
+    public int sendInn(LanSoknad soknad) {
+        int soknadsnummer = repo.lagreSoknad(soknad);
+        System.out.println("Mottatt søknad: " + soknadsnummer);
+        return soknadsnummer;
+    }
+
+    public String status(int soknadsnummer) {
+        LanSoknad soknad = repo.hentSoknad(soknadsnummer);
+        if(soknad == null) {
+            return "Ukjent";
         }
-        return "Ukjent";
+        return "Mottatt søknad";
     }
 }

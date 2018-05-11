@@ -9,4 +9,6 @@ public class LanSoknad {
     private ArrayList<Person> lanetakere;
     private int lanebelop;
     private String behov;
+
+    private int soknadsnummer;
 }
