@@ -1,4 +1,4 @@
-package no.boerta.intervju.lanApp.Modell;
+package no.boerta.intervju.lanApp.model;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -13,5 +13,9 @@ public class Fnr {
     public Fnr(String fnr) {
         //valider gyldig fnr her
         this.fnr = fnr;
+    }
+
+    public String toString() {
+        return fnr;
     }
 }

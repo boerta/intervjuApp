@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LanAppEntryPoint {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(LanAppEntryPoint.class, args);
 	}
 
