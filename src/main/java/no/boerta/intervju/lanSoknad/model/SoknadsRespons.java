@@ -1,4 +1,4 @@
-package no.boerta.intervju.lanApp.model;
+package no.boerta.intervju.lanSoknad.model;
 
 
 import lombok.Getter;

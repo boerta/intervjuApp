@@ -1,13 +1,13 @@
-package no.boerta.intervju.lanApp;
+package no.boerta.intervju.lanSoknad;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LanAppEntryPoint {
+public class LanSoknad {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LanAppEntryPoint.class, args);
+		SpringApplication.run(LanSoknad.class, args);
 	}
 
 }

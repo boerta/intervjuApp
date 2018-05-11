@@ -1,4 +1,4 @@
-package no.boerta.intervju.lanApp;
+package no.boerta.intervju.lanSoknad;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
 @WebAppConfiguration
-public class LanAppEntryPointIT {
+public class LanSoknadIT {
 
 	@Autowired
 	private WebApplicationContext wac;

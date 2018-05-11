@@ -1,14 +1,14 @@
-package no.boerta.intervju.lanApp;
+package no.boerta.intervju.lanSoknad;
 
-import no.boerta.intervju.lanApp.model.Fnr;
-import no.boerta.intervju.lanApp.model.LanSoknad;
-import no.boerta.intervju.lanApp.model.SoknadsRespons;
+import no.boerta.intervju.lanSoknad.model.Fnr;
+import no.boerta.intervju.lanSoknad.model.LanSoknad;
+import no.boerta.intervju.lanSoknad.model.SoknadsRespons;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
 @Service
-public class LanAppService {
+public class LanSoknadService {
     private HashMap<Fnr, LanSoknad> mottatteSoknader = new HashMap<>();
 
 
