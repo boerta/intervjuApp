@@ -15,7 +15,7 @@ public class LanSoknadService {
     public SoknadsRespons sendInn(LanSoknad soknad) {
         Fnr hovedsoker = soknad.getLanetakere().get(0).getFnr();
         mottatteSoknader.put(hovedsoker, soknad);
-
+        System.out.println("Mottatt søknad: " + hovedsoker);
         return new SoknadsRespons(hovedsoker);
     }
 

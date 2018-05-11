@@ -15,10 +15,10 @@ public class LanSoknadController {
 		this.service = service;
 	}
 
-	@RequestMapping("/lan/ping")
 	@SuppressWarnings("static-method")
-	public String ping() {
-		return "pong";
+	@RequestMapping("/lan")
+	public String lan() {
+		return "Endepunkt for innsending av lånesøknad og henting av søknadsstatus";
 	}
 
 	@RequestMapping(
@@ -32,7 +32,8 @@ public class LanSoknadController {
 	}
 
 	@RequestMapping(
-			value="/lan/status"
+			value="/lan/status",
+			method = RequestMethod.GET
 	)
 	public String status(String fnr) {
 		return service.status(fnr);
