@@ -34,7 +34,7 @@ public class LanSoknadController {
 			value="/lan/status",
 			method = RequestMethod.GET
 	)
-	public String status(int soknadsnummer) {
+	public String status(String soknadsnummer) {
 		return service.status(soknadsnummer);
 	}
 

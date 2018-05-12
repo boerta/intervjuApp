@@ -19,7 +19,7 @@ public class LanSoknadService {
         return soknadsnummer;
     }
 
-    public String status(int soknadsnummer) {
+    public String status(String soknadsnummer) {
         LanSoknad soknad = repo.hentSoknad(soknadsnummer);
         if(soknad == null) {
             return "Ukjent";
