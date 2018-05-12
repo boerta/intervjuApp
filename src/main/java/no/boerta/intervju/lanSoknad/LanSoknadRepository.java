@@ -1,6 +1,6 @@
 package no.boerta.intervju.lanSoknad;
 
-import no.boerta.intervju.lanSoknad.model.LanSoknad;
+import no.boerta.intervju.lanSoknad.model.Soknad;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -8,10 +8,10 @@ import java.util.UUID;
 
 @Service
 public class LanSoknadRepository {
-    private HashMap<String, LanSoknad> mottatteSoknader = new HashMap<>();
+    private HashMap<String, Soknad> mottatteSoknader = new HashMap<>();
     private static String NAMESPACE = "lanSoknad";
 
-    public String lagreSoknad(LanSoknad soknad) {
+    public String lagreSoknad(Soknad soknad) {
         String soknadsnummer = lagSoknadsnummer();
 
         mottatteSoknader.put(soknadsnummer, soknad);
@@ -19,7 +19,7 @@ public class LanSoknadRepository {
         return soknadsnummer;
     }
 
-    public LanSoknad hentSoknad(String soknadsnummer) {
+    public Soknad hentSoknad(String soknadsnummer) {
         return mottatteSoknader.get(soknadsnummer);
     }
 

@@ -1,6 +1,6 @@
 package no.boerta.intervju.lanSoknad;
 
-import no.boerta.intervju.lanSoknad.model.LanSoknad;
+import no.boerta.intervju.lanSoknad.model.Soknad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +25,7 @@ public class LanSoknadController {
 			consumes = "application/json",
 			produces = "application/json"
 			)
-	public String soknad(@RequestParam() LanSoknad soknad) {
+	public String soknad(@RequestParam() Soknad soknad) {
 		return service.sendInn(soknad);
 	}
 

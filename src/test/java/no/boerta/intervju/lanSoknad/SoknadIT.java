@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
-public class LanSoknadIT {
+public class SoknadIT {
 
 	@Autowired
 	private WebApplicationContext wac;
@@ -26,7 +26,6 @@ public class LanSoknadIT {
 
 	@Before
 	public void setup() {
-
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 	}
 
@@ -43,5 +42,4 @@ public class LanSoknadIT {
 				.andExpect(status().isOk())
 				.andExpect(content().string("NOK"));
 	}
-
 }

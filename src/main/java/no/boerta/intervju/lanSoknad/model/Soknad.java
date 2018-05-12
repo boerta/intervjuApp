@@ -2,13 +2,11 @@ package no.boerta.intervju.lanSoknad.model;
 
 import lombok.Data;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Data
-public class LanSoknad {
-    private ArrayList<Person> lanetakere;
+public class Soknad {
+    private List<Person> lanetakere;
     private int lanebelop;
     private String behov;
-
-    private int soknadsnummer;
 }

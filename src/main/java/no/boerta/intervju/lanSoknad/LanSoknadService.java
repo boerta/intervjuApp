@@ -1,6 +1,6 @@
 package no.boerta.intervju.lanSoknad;
 
-import no.boerta.intervju.lanSoknad.model.LanSoknad;
+import no.boerta.intervju.lanSoknad.model.Soknad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +13,14 @@ public class LanSoknadService {
         this.repo = repo;
     }
 
-    public String sendInn(LanSoknad soknad) {
+    public String sendInn(Soknad soknad) {
         String soknadsnummer = repo.lagreSoknad(soknad);
         System.out.println("Mottatt søknad: " + soknadsnummer);
         return soknadsnummer;
     }
 
     public String status(String soknadsnummer) {
-        LanSoknad soknad = repo.hentSoknad(soknadsnummer);
+        Soknad soknad = repo.hentSoknad(soknadsnummer);
         if(soknad == null) {
             return "Ukjent";
         }
