@@ -4,7 +4,7 @@ import no.boerta.intervju.lanSoknad.model.Soknad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController(value = "/lan")
 public class LanSoknadController {
 
 	private LanSoknadService service;
@@ -22,10 +22,11 @@ public class LanSoknadController {
 	@RequestMapping(
 			value="/lan/soknad",
 			method = RequestMethod.POST,
-			consumes = "application/json",
-			produces = "application/json"
+			consumes = "application/json"
+			//produces = "application/json"
 			)
-	public String soknad(@RequestParam() Soknad soknad) {
+	@ResponseBody
+	public String soknad(@RequestBody Soknad soknad) {
 		return service.sendInn(soknad);
 	}
 
