@@ -1,10 +1,12 @@
 package no.boerta.intervju.lanSoknad;
 
+import io.swagger.annotations.Api;
 import no.boerta.intervju.lanSoknad.model.Soknad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController(value = "/lan")
+@Api(value = "LanSoknad", description = "Endepunkt for innsending av lånesøknad og henting av søknadsstatus")
 public class LanSoknadController {
 
 	private LanSoknadService service;
@@ -12,11 +14,6 @@ public class LanSoknadController {
 	@Autowired
 	public LanSoknadController(LanSoknadService service) {
 		this.service = service;
-	}
-
-	@RequestMapping("/lan")
-	public String lan() {
-		return "Endepunkt for innsending av lånesøknad og henting av søknadsstatus";
 	}
 
 	@RequestMapping(
@@ -30,9 +27,10 @@ public class LanSoknadController {
 
 	@RequestMapping(
 			value="/lan/status",
-			method = RequestMethod.GET
+			method = RequestMethod.GET,
+			consumes = "text/plain"
 	)
-	public String status(@RequestBody String soknadsnummer) {
+	public String status(@RequestParam String soknadsnummer) {
 		return service.status(soknadsnummer);
 	}
 

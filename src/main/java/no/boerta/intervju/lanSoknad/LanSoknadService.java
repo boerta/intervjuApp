@@ -15,15 +15,17 @@ public class LanSoknadService {
 
     public String sendInn(Soknad soknad) {
         String soknadsnummer = repo.lagreSoknad(soknad);
-        System.out.println("Mottatt søknad: " + soknadsnummer);
+        System.out.println("Mottatt ny søknad: " + soknadsnummer);
         return soknadsnummer;
     }
 
     public String status(String soknadsnummer) {
         Soknad soknad = repo.hentSoknad(soknadsnummer);
         if(soknad == null) {
+            System.out.println("Ukjent soknad: " + soknadsnummer);
             return "Ukjent";
         }
+        System.out.println("Etterspurt soknad: " + soknadsnummer + " er mottatt.");
         return "Mottatt søknad";
     }
 }
