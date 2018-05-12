@@ -20,10 +20,7 @@ public class LanSoknadRepository {
     }
 
     public LanSoknad hentSoknad(String soknadsnummer) {
-        if (mottatteSoknader.containsKey(soknadsnummer)) {
-            return mottatteSoknader.get(soknadsnummer);
-        }
-        return null;
+        return mottatteSoknader.get(soknadsnummer);
     }
 
     private String lagSoknadsnummer() {
