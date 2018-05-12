@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -31,7 +32,9 @@ public class SoknadIT {
 
 	@Test
 	public void testSoknad() throws Exception {
-		String content="{\n" +
+		String content=
+				"Content-Type: application/json\n" +
+				"{\n" +
 				"  \"lanetakere\": [{ \"fnr\" : \"01056000069\", \"navn\" : \"Kari Nordmann\" } , { \"fnr\" : \"01056000301\", \"navn\" : \"Ola Nordmann\" }],\n" +
 				"  \"lanebelop\": 2450000,\n" +
 				"  \"behov\": \"Vi skal låne penger til........\"\n" +
@@ -41,5 +44,16 @@ public class SoknadIT {
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().string("NOK"));
+	}
+
+	@Test
+	public void testStatus() throws Exception {
+		String UUID = "1243";
+
+		mockMvc.perform(get("/lan/status")
+				.content(UUID)
+				.accept(MediaType.TEXT_PLAIN))
+				.andExpect(status().isOk())
+				.andExpect(content().string("Ukjent"));
 	}
 }
