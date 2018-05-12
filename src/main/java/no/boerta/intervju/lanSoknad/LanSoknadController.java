@@ -14,7 +14,6 @@ public class LanSoknadController {
 		this.service = service;
 	}
 
-	@SuppressWarnings("static-method")
 	@RequestMapping("/lan")
 	public String lan() {
 		return "Endepunkt for innsending av lånesøknad og henting av søknadsstatus";
