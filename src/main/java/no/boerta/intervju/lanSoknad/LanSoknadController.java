@@ -27,8 +27,7 @@ public class LanSoknadController {
 
 	@RequestMapping(
 			value="/lan/status",
-			method = RequestMethod.GET,
-			consumes = "text/plain"
+			method = RequestMethod.GET
 	)
 	public String status(@RequestParam String soknadsnummer) {
 		return service.status(soknadsnummer);
