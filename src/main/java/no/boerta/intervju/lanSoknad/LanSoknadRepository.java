@@ -9,7 +9,6 @@ import java.util.UUID;
 @Service
 public class LanSoknadRepository {
     private HashMap<String, Soknad> mottatteSoknader = new HashMap<>();
-    private static String NAMESPACE = "lanSoknad";
 
     public String lagreSoknad(Soknad soknad) {
         String soknadsnummer = lagSoknadsnummer();
@@ -24,7 +23,7 @@ public class LanSoknadRepository {
     }
 
     private String lagSoknadsnummer() {
-        UUID uuid = UUID.nameUUIDFromBytes(NAMESPACE.getBytes());
+        UUID uuid = UUID.randomUUID();
         return uuid.toString();
     }
 }

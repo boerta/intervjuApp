@@ -23,9 +23,7 @@ public class LanSoknadController {
 			value="/lan/soknad",
 			method = RequestMethod.POST,
 			consumes = "application/json"
-			//produces = "application/json"
 			)
-	@ResponseBody
 	public String soknad(@RequestBody Soknad soknad) {
 		return service.sendInn(soknad);
 	}
@@ -34,7 +32,7 @@ public class LanSoknadController {
 			value="/lan/status",
 			method = RequestMethod.GET
 	)
-	public String status(String soknadsnummer) {
+	public String status(@RequestBody String soknadsnummer) {
 		return service.status(soknadsnummer);
 	}
 

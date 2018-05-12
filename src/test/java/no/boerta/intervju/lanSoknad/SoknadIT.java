@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -33,17 +35,26 @@ public class SoknadIT {
 	@Test
 	public void testSoknad() throws Exception {
 		String content=
-				"Content-Type: application/json\n" +
 				"{\n" +
 				"  \"lanetakere\": [{ \"fnr\" : \"01056000069\", \"navn\" : \"Kari Nordmann\" } , { \"fnr\" : \"01056000301\", \"navn\" : \"Ola Nordmann\" }],\n" +
 				"  \"lanebelop\": 2450000,\n" +
 				"  \"behov\": \"Vi skal låne penger til........\"\n" +
 				"}";
-		mockMvc.perform(post("/lan/soknad")
-				.content(content)
-				.accept(MediaType.APPLICATION_JSON))
+		MvcResult result = mockMvc.perform(post("/lan/soknad")
+					.contentType(MediaType.APPLICATION_JSON)
+					.content(content)
+				.accept(MediaType.TEXT_PLAIN))
 				.andExpect(status().isOk())
-				.andExpect(content().string("NOK"));
+				.andReturn();
+
+		String soknadsnummer = result.getResponse().getContentAsString();
+
+		mockMvc.perform(get("/lan/status")
+				.contentType(MediaType.TEXT_PLAIN)
+				.content(soknadsnummer)
+				.accept(MediaType.TEXT_PLAIN))
+				.andExpect(status().isOk())
+				.andExpect(content().string("Mottatt søknad"));
 	}
 
 	@Test
@@ -52,6 +63,7 @@ public class SoknadIT {
 
 		mockMvc.perform(get("/lan/status")
 				.content(UUID)
+				.contentType(MediaType.TEXT_PLAIN)
 				.accept(MediaType.TEXT_PLAIN))
 				.andExpect(status().isOk())
 				.andExpect(content().string("Ukjent"));
