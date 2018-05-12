@@ -5,22 +5,19 @@ import no.boerta.intervju.lanSoknad.model.LanSoknad;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 @Service
 public class LanSoknadRepository {
-    private HashMap<Integer, LanSoknad> mottatteSoknader = new HashMap<>();
-    private int soknadsnummerTeller = 0;
+    private HashMap<String, LanSoknad> mottatteSoknader = new HashMap<>();
+    private String namespace = "lanSoknad";
 
-    @Synchronized //trådsikre teller
-    public int lagreSoknad(LanSoknad soknad) {
-        int soknadsnummer = ++soknadsnummerTeller;
+    public String lagreSoknad(LanSoknad soknad) {
+        UUID uuid = UUID.nameUUIDFromBytes(namespace.getBytes());
+        String soknadsnummer = uuid.toString();
 
-        try {
-            mottatteSoknader.put(soknadsnummer, soknad);
-        } catch(Exception e) {
-            soknadsnummerTeller--;  //bevare state paa teller
-            throw e;
-        }
+        mottatteSoknader.put(soknadsnummer, soknad);
+
         return soknadsnummer;
     }
 

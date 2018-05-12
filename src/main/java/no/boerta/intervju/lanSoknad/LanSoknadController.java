@@ -26,7 +26,7 @@ public class LanSoknadController {
 			consumes = "application/json",
 			produces = "application/json"
 			)
-	public SoknadsRespons soknad(@RequestParam() LanSoknad soknad) {
+	public String soknad(@RequestParam() LanSoknad soknad) {
 		return service.sendInn(soknad);
 	}
 

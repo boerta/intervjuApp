@@ -13,8 +13,8 @@ public class LanSoknadService {
         this.repo = repo;
     }
 
-    public int sendInn(LanSoknad soknad) {
-        int soknadsnummer = repo.lagreSoknad(soknad);
+    public String sendInn(LanSoknad soknad) {
+        String soknadsnummer = repo.lagreSoknad(soknad);
         System.out.println("Mottatt søknad: " + soknadsnummer);
         return soknadsnummer;
     }
